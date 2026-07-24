@@ -1,0 +1,238 @@
+{
+  "title": "RailPulse SNCB GTFS Database",
+  "database": "sqlite",
+  "tables": [
+    {
+      "id": "table_agencies",
+      "name": "agencies",
+      "x": 50,
+      "y": 50,
+      "color": "#6360f7",
+      "comment": "Transit agencies from agency.txt",
+      "fields": [
+        {"id": "agencies_agency_id", "name": "agency_id", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": true, "notNull": true, "increment": false, "comment": "GTFS agency identifier"},
+        {"id": "agencies_agency_lang", "name": "agency_lang", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "agencies_agency_name", "name": "agency_name", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "agencies_agency_timezone", "name": "agency_timezone", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "agencies_agency_url", "name": "agency_url", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "agencies_agency_phone", "name": "agency_phone", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "agencies_agency_fare_url", "name": "agency_fare_url", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""}
+      ],
+      "indices": []
+    },
+    {
+      "id": "table_routes",
+      "name": "routes",
+      "x": 450,
+      "y": 50,
+      "color": "#bc49c4",
+      "comment": "Transit routes from routes.txt",
+      "fields": [
+        {"id": "routes_route_id", "name": "route_id", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": true, "notNull": true, "increment": false, "comment": "GTFS route identifier"},
+        {"id": "routes_agency_id", "name": "agency_id", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "References agencies.agency_id"},
+        {"id": "routes_route_short_name", "name": "route_short_name", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "routes_route_long_name", "name": "route_long_name", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "routes_route_desc", "name": "route_desc", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "routes_route_type", "name": "route_type", "type": "INTEGER", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "GTFS route type"},
+        {"id": "routes_route_url", "name": "route_url", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "routes_route_color", "name": "route_color", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "routes_route_text_color", "name": "route_text_color", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""}
+      ],
+      "indices": [
+        {"name": "idx_routes_agency_id", "unique": false, "fields": ["agency_id"]}
+      ]
+    },
+    {
+      "id": "table_services",
+      "name": "services",
+      "x": 50,
+      "y": 500,
+      "color": "#ffe159",
+      "comment": "Regular weekly service calendars from calendar.txt",
+      "fields": [
+        {"id": "services_service_id", "name": "service_id", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": true, "notNull": true, "increment": false, "comment": "GTFS service identifier"},
+        {"id": "services_monday", "name": "monday", "type": "INTEGER", "default": "", "check": "monday IN (0, 1)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "services_tuesday", "name": "tuesday", "type": "INTEGER", "default": "", "check": "tuesday IN (0, 1)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "services_wednesday", "name": "wednesday", "type": "INTEGER", "default": "", "check": "wednesday IN (0, 1)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "services_thursday", "name": "thursday", "type": "INTEGER", "default": "", "check": "thursday IN (0, 1)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "services_friday", "name": "friday", "type": "INTEGER", "default": "", "check": "friday IN (0, 1)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "services_saturday", "name": "saturday", "type": "INTEGER", "default": "", "check": "saturday IN (0, 1)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "services_sunday", "name": "sunday", "type": "INTEGER", "default": "", "check": "sunday IN (0, 1)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "services_start_date", "name": "start_date", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "GTFS service start date"},
+        {"id": "services_end_date", "name": "end_date", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "GTFS service end date"}
+      ],
+      "indices": []
+    },
+    {
+      "id": "table_service_exceptions",
+      "name": "service_exceptions",
+      "x": 450,
+      "y": 500,
+      "color": "#89e667",
+      "comment": "Added and removed service dates from calendar_dates.txt",
+      "fields": [
+        {"id": "service_exceptions_service_id", "name": "service_id", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": false, "notNull": true, "increment": false, "comment": "Composite PK component and FK to services"},
+        {"id": "service_exceptions_exception_date", "name": "exception_date", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": false, "notNull": true, "increment": false, "comment": "Composite PK component; source column is date"},
+        {"id": "service_exceptions_exception_type", "name": "exception_type", "type": "INTEGER", "default": "", "check": "exception_type IN (1, 2)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "1 added, 2 removed"}
+      ],
+      "indices": [
+        {"name": "idx_service_exceptions_date", "unique": false, "fields": ["exception_date"]}
+      ]
+    },
+    {
+      "id": "table_stops",
+      "name": "stops",
+      "x": 850,
+      "y": 500,
+      "color": "#ff9159",
+      "comment": "Stations, stops and platforms from stops.txt",
+      "fields": [
+        {"id": "stops_stop_id", "name": "stop_id", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": true, "notNull": true, "increment": false, "comment": "GTFS stop identifier"},
+        {"id": "stops_parent_station", "name": "parent_station", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": "Self-reference to parent station"},
+        {"id": "stops_stop_code", "name": "stop_code", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "stops_stop_name", "name": "stop_name", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "stops_stop_desc", "name": "stop_desc", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "stops_stop_lat", "name": "stop_lat", "type": "REAL", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "stops_stop_lon", "name": "stop_lon", "type": "REAL", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "stops_location_type", "name": "location_type", "type": "INTEGER", "default": "0", "check": "location_type IN (0, 1, 2, 3, 4)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "0 stop/platform, 1 station, 2 entrance, 3 node, 4 boarding area"},
+        {"id": "stops_platform_code", "name": "platform_code", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "stops_stop_url", "name": "stop_url", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "stops_wheelchair_boarding", "name": "wheelchair_boarding", "type": "INTEGER", "default": "", "check": "wheelchair_boarding IS NULL OR wheelchair_boarding IN (0, 1, 2)", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "stops_zone_id", "name": "zone_id", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""}
+      ],
+      "indices": [
+        {"name": "idx_stops_parent_platform", "unique": false, "fields": ["parent_station", "platform_code"]}
+      ]
+    },
+    {
+      "id": "table_trips",
+      "name": "trips",
+      "x": 850,
+      "y": 50,
+      "color": "#59d9ff",
+      "comment": "Scheduled trips from trips.txt",
+      "fields": [
+        {"id": "trips_trip_id", "name": "trip_id", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": true, "notNull": true, "increment": false, "comment": "GTFS trip identifier"},
+        {"id": "trips_route_id", "name": "route_id", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "References routes.route_id"},
+        {"id": "trips_service_id", "name": "service_id", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "References services.service_id"},
+        {"id": "trips_trip_headsign", "name": "trip_headsign", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "trips_trip_short_name", "name": "trip_short_name", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "trips_direction_id", "name": "direction_id", "type": "INTEGER", "default": "", "check": "direction_id IS NULL OR direction_id IN (0, 1)", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "trips_block_id", "name": "block_id", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "trips_shape_id", "name": "shape_id", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "trips_wheelchair_accessible", "name": "wheelchair_accessible", "type": "INTEGER", "default": "", "check": "wheelchair_accessible IS NULL OR wheelchair_accessible IN (0, 1, 2)", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "trips_bikes_allowed", "name": "bikes_allowed", "type": "INTEGER", "default": "", "check": "bikes_allowed IS NULL OR bikes_allowed IN (0, 1, 2)", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""}
+      ],
+      "indices": [
+        {"name": "idx_trips_route_id", "unique": false, "fields": ["route_id"]},
+        {"name": "idx_trips_service_id", "unique": false, "fields": ["service_id"]}
+      ]
+    },
+    {
+      "id": "table_stop_times",
+      "name": "stop_times",
+      "x": 1250,
+      "y": 250,
+      "color": "#ff5959",
+      "comment": "Scheduled stop arrivals and departures from stop_times.txt",
+      "fields": [
+        {"id": "stop_times_trip_id", "name": "trip_id", "type": "TEXT", "default": "", "check": "", "primary": true, "unique": false, "notNull": true, "increment": false, "comment": "Composite PK component and FK to trips"},
+        {"id": "stop_times_stop_sequence", "name": "stop_sequence", "type": "INTEGER", "default": "", "check": "", "primary": true, "unique": false, "notNull": true, "increment": false, "comment": "Composite PK component"},
+        {"id": "stop_times_stop_id", "name": "stop_id", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "References stops.stop_id"},
+        {"id": "stop_times_arrival_time", "name": "arrival_time", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "GTFS HH:MM:SS; hour may exceed 23"},
+        {"id": "stop_times_departure_time", "name": "departure_time", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": "GTFS HH:MM:SS; hour may exceed 23"},
+        {"id": "stop_times_stop_headsign", "name": "stop_headsign", "type": "TEXT", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""},
+        {"id": "stop_times_pickup_type", "name": "pickup_type", "type": "INTEGER", "default": "", "check": "pickup_type IN (0, 1, 2, 3)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "stop_times_drop_off_type", "name": "drop_off_type", "type": "INTEGER", "default": "", "check": "drop_off_type IN (0, 1, 2, 3)", "primary": false, "unique": false, "notNull": true, "increment": false, "comment": ""},
+        {"id": "stop_times_shape_dist_traveled", "name": "shape_dist_traveled", "type": "REAL", "default": "", "check": "", "primary": false, "unique": false, "notNull": false, "increment": false, "comment": ""}
+      ],
+      "indices": [
+        {"name": "idx_stop_times_stop_id", "unique": false, "fields": ["stop_id"]},
+        {"name": "idx_stop_times_departure_time", "unique": false, "fields": ["departure_time"]}
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel_routes_agencies",
+      "name": "routes_agency_fk",
+      "startTableId": "table_routes",
+      "startFieldId": "routes_agency_id",
+      "endTableId": "table_agencies",
+      "endFieldId": "agencies_agency_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action"
+    },
+    {
+      "id": "rel_exceptions_services",
+      "name": "service_exceptions_service_fk",
+      "startTableId": "table_service_exceptions",
+      "startFieldId": "service_exceptions_service_id",
+      "endTableId": "table_services",
+      "endFieldId": "services_service_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action"
+    },
+    {
+      "id": "rel_stops_parent",
+      "name": "stops_parent_station_fk",
+      "startTableId": "table_stops",
+      "startFieldId": "stops_parent_station",
+      "endTableId": "table_stops",
+      "endFieldId": "stops_stop_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action"
+    },
+    {
+      "id": "rel_trips_routes",
+      "name": "trips_route_fk",
+      "startTableId": "table_trips",
+      "startFieldId": "trips_route_id",
+      "endTableId": "table_routes",
+      "endFieldId": "routes_route_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action"
+    },
+    {
+      "id": "rel_trips_services",
+      "name": "trips_service_fk",
+      "startTableId": "table_trips",
+      "startFieldId": "trips_service_id",
+      "endTableId": "table_services",
+      "endFieldId": "services_service_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action"
+    },
+    {
+      "id": "rel_stop_times_trips",
+      "name": "stop_times_trip_fk",
+      "startTableId": "table_stop_times",
+      "startFieldId": "stop_times_trip_id",
+      "endTableId": "table_trips",
+      "endFieldId": "trips_trip_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action"
+    },
+    {
+      "id": "rel_stop_times_stops",
+      "name": "stop_times_stop_fk",
+      "startTableId": "table_stop_times",
+      "startFieldId": "stop_times_stop_id",
+      "endTableId": "table_stops",
+      "endFieldId": "stops_stop_id",
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action"
+    }
+  ],
+  "notes": [],
+  "subjectAreas": [],
+  "types": [],
+  "enums": []
+}
