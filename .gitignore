@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Raw GTFS data
+SNBC Data - July 22-20260722T094138Z-1-001/
+SNCB_text_data/
+data/raw/
+
+# Generated SQLite databases
+database/*.db
+database/*.db-journal
+database/*.db-shm
+database/*.db-wal
